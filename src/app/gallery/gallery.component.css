@@ -1,0 +1,12 @@
+p{
+  min-height: 70%;
+}
+.row{
+  margin-bottom: 50%;
+  min-height: 200px;
+}
+
+
+.col-md-8{
+  background-color:WHITE;
+}

@@ -1,0 +1,39 @@
+<mat-card>
+  <mat-toolbar>Post</mat-toolbar>
+    <br>
+    <br>
+    <mat-form-field>
+    <input type="text" matInput placeholder="Enter title" #title>
+  </mat-form-field>
+    <br><br>
+
+    <button type="submit" mat-raised-button color="primary" (click)="getValue(title)">Add Post</button>
+
+
+  <br><br>
+  <p> {{userInput}}</p>
+
+</mat-card>
+
+<br><br>
+
+<mat-card>
+  <mat-toolbar>Two way data binding</mat-toolbar>
+  <br><br>
+
+  <mat-form-field>
+    <input
+    type="text"
+    placeholder="Enter content"
+    matInput
+    [(ngModel)]="enteredContent">
+  </mat-form-field>
+
+
+
+  <button type="submit" mat-raised-button color="accent" (click)="getmsg()">Get value</button>
+
+
+  <br><br>
+  <p>{{text}}</p>
+</mat-card>

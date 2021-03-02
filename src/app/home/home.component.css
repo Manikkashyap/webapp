@@ -1,0 +1,9 @@
+.container-fluid{
+  min-height: 70%;
+}
+.row{
+  min-height:550px;
+}
+mat-card{
+  background-attachment:#ffd740;
+}
