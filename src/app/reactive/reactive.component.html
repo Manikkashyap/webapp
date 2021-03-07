@@ -1,39 +1,109 @@
 <mat-card>
   <mat-toolbar>Reactive Form</mat-toolbar>
   <br><br>
-  <form [formGroup] = "Registerform" (ngSubmit)="getdetais()">
+
+  <form [formGroup] = "Registerform" (ngSubmit)="onsubmit()">
     <mat-form-field>
-      <input type="text" matInput formControlName="name" placeholder="Name">
+      <input type="text"
+       matInput formControlName="name"
+        placeholder="Name"
+        [ngClass] = "{'is-invalid':submitted && f.name.errors}">
     </mat-form-field>
-    <br><br>
-    <mat-form-field>
-      <input type="text" matInput formControlName="email" placeholder="Email">
-    </mat-form-field>
-    <br><br>
-    <mat-form-field>
-      <input type="text" matInput formControlName="contact" placeholder="contact">
-    </mat-form-field>
+    <mat-error *ngIf="submitted && f.name.errors">
+      <mat-error *ngIf="f.name.errors?.required">
+        Name Should be entered .
+      </mat-error>
+      <mat-error *ngIf="f.name.errors?.minlength">
+        Name Should be greater then 5 characters .
+      </mat-error>
+    </mat-error>
     <br><br>
 
     <mat-form-field>
-      <input type="text" matInput formControlName="Password" placeholder="Password">
+      <input type="text"
+      matInput formControlName="email"
+      placeholder="Email"
+      [ngClass] = "{'is-invlid' : submitted && f.email.errors}">
     </mat-form-field>
+    <mat-error *ngIf="submitted && f.email.errors">
+      <mat-error *ngIf = "f.email.errors?.required">
+        Email should be entered .
+      </mat-error>
+      <mat-error *ngIf = "f.email.errors?.email">
+        Email should be in email format .
+      </mat-error>
+    </mat-error>
     <br><br>
+
     <mat-form-field>
-      <input type="text" matInput formControlName="confirm" placeholder="Confirm Password">
+      <input type="text"
+      matInput formControlName="contact"
+      placeholder="contact"
+      [ngClass]="{'is-invalid' : submitted && f.contact.errors}">
     </mat-form-field>
-    <br><br><br>
+    <mat-error *ngIf = "submitted && f.contact.errors">
+        <mat-error *ngIf = "f.contact.errors?.required">
+          Contact should be entered .
+        </mat-error>
+        <mat-error *ngIf="f.contact.errors?.minlength">
+          Contact should be of minimum 10 digits .
+        </mat-error>
+        <mat-error *ngIf="f.contact.errors?.maxlength">
+          Contact should be of maximum 10 digits .
+        </mat-error>
+    </mat-error>
+
+    <br><br>
+
+    <mat-form-field>
+      <input type="password"
+      matInput formControlName="Password"
+      placeholder="Password"
+      [ngClass] = "{'is-invalid': submitted && f.Password.errors}">
+    </mat-form-field>
+    <mat-error *ngIf = "submitted && f.Password.errors">
+      <mat-error *ngIf = "f.Password.errors?.required">
+        Password Should be required .
+      </mat-error>
+    </mat-error>
+    <br><br>
+
+    <mat-form-field>
+      <input type="password"
+       matInput formControlName="confirm"
+       placeholder="confirm Password"
+       [ngClass]="{'is-invalid': submitted && f.confirm.errors}">
+    </mat-form-field>
+    <mat-error *ngIf = "submitted && f.confirm.errors">
+      <mat-error *ngIf = "f.confirm.errors?.required">
+        Password Should be required .
+      </mat-error>
+      <mat-error *ngIf = "f.confirm.errors?.mustMatch">
+        Password mismatch .
+      </mat-error>
+    </mat-error>
+    <br><br>
+
     <label> Gender &nbsp;</label>
-    <mat-radio-group aria-label="Select an option" formControlName = "Gender">
+    <mat-radio-group
+    aria-label="Select an option"
+    formControlName = "Gender"
+    [ngClass]="{'is- invalid' : submitted && f.Gender.errors}">
       <mat-radio-button value="Male">Male &nbsp;</mat-radio-button>
       <mat-radio-button value="Female">Female</mat-radio-button>
-
-    </mat-radio-group>
+   </mat-radio-group><br>
+   <mat-error *ngIf = "submitted && f.Gender.errors">
+     <mat-error *ngIf = "f.Gender.errors?.required">
+       Gender should be selected .
+     </mat-error>
+   </mat-error>
     <br><br>
     <h4>Location</h4>
     <mat-form-field appearance="fill">
       <mat-label>Add Loaction</mat-label>
-      <select matNativeControl required formControlName = "Location">
+      <select matNativeControl
+      required formControlName = "Location"
+      [ngClass]="{'is-invalid': submitted && f.Location.errors}">
         <option value="Ludhiana">Ludhiana</option>
         <option value="Mohali">Mohali</option>
         <option value="Chandigarh">Chandigarh</option>
@@ -44,10 +114,23 @@
         <option value="Banglore">Banglore</option>
       </select>
     </mat-form-field>
+    <mat-error *ngIf = "submitted && f.Location.errors">
+      <mat-error *ngIf = "f.Location.errors?.required">
+        Location should be selected first .
+      </mat-error>
+    </mat-error>
+
     <br><br>
     <section class="example-section">
-      <mat-checkbox class="example-margin" formControlName = "T&C">Accept Terms & Conditions .</mat-checkbox>
+      <mat-checkbox class="example-margin"
+      formControlName = "terms"
+      [ngClass] = "{'is-invalid':submitted && f.terms.errors}">Accept Terms & Conditions .</mat-checkbox>
     </section>
+    <mat-error *ngIf = "submitted && f.terms.errors">
+      <mat-error *ngIf = "f.terms.errors?.required">
+        Accept Terms & Conditios .
+      </mat-error>
+    </mat-error>
     <br><br>
     <button type = " submit " mat-raised-button color="accent">Submit</button>
  </form>
